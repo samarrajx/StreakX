@@ -3,6 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { getCurrentProfile } from "@/lib/supabase/queries/profiles";
 import { getUserStreak } from "@/lib/supabase/queries/streaks";
 import LogoutButton from "@/components/profile/LogoutButton";
+import InstallButton from "@/components/profile/InstallButton";
 import { Flame, Lightning, CheckCircle, Percent, Gear, Shield } from "@phosphor-icons/react/dist/ssr";
 
 export const dynamic = "force-dynamic";
@@ -66,6 +67,7 @@ export default async function ProfilePage() {
         </a>
       )}
 
+      <InstallButton />
       <LogoutButton />
     </div>
   );

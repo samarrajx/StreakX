@@ -1,5 +1,5 @@
 const CACHE_NAME = "streakx-v1";
-const STATIC_ASSETS = ["/", "/login", "/streak", "/leaderboard", "/profile", "/offline", "/icons/icon-192.png", "/icons/icon-512.png"];
+const STATIC_ASSETS = ["/", "/login", "/streak", "/leaderboard", "/profile", "/icons/icon-192.png", "/icons/icon-512.png"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
