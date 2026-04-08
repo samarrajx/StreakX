@@ -3,6 +3,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 import { List, X, Gear, CaretRight, ChartBar, Users, Barbell, CalendarBlank } from "@phosphor-icons/react";
 
 interface LinkItem {
@@ -35,10 +36,15 @@ export function AdminSidebarNav({ links, role }: { links: LinkItem[]; role: stri
         </button>
         
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
-            <Gear size={18} weight="fill" className="text-white/40" />
+          <div className="relative w-8 h-8">
+            <Image
+              src="/brand/logo.png"
+              alt="Logo"
+              fill
+              className="object-contain"
+            />
           </div>
-          <span className="text-white font-bold text-sm tracking-tight">
+          <span className="text-white font-black text-sm tracking-tighter uppercase font-display">
             {isAdmin ? "Admin Console" : "Manager Console"}
           </span>
         </div>
@@ -74,12 +80,17 @@ export function AdminSidebarNav({ links, role }: { links: LinkItem[]; role: stri
             {/* Sidebar Header */}
             <div className="p-6 pt-[calc(1.5rem+env(safe-area-inset-top))] flex items-center justify-between border-b border-white/5">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-purple-gradient shadow-glow-purple flex items-center justify-center">
-                  <Gear size={22} weight="fill" className="text-white" />
+                <div className="relative w-10 h-10 drop-shadow-glow-purple">
+                  <Image
+                    src="/brand/logo.png"
+                    alt="StreakX Logo"
+                    fill
+                    className="object-contain"
+                  />
                 </div>
                 <div>
-                  <p className="text-white font-bold text-sm leading-none">StreakX</p>
-                  <p className="text-[10px] text-white/40 uppercase tracking-widest mt-1">Control Center</p>
+                  <p className="text-white font-black text-base leading-none font-display tracking-tight">StreakX</p>
+                  <p className="text-[10px] text-white/40 uppercase tracking-[0.2em] mt-1 font-black">Control Center</p>
                 </div>
               </div>
               <button 

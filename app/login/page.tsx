@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { createClient } from "@/lib/supabase/client";
 
 export default function LoginPage() {
@@ -24,11 +25,11 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-dvh flex flex-col items-center justify-center px-5 relative overflow-hidden">
+    <div className="min-h-dvh flex flex-col items-center justify-center px-5 relative overflow-hidden bg-[#050507]">
       {/* Background orbs */}
       <div className="pointer-events-none fixed inset-0 overflow-hidden">
-        <div className="absolute top-[-20%] left-[-10%] w-[60vw] h-[60vw] rounded-full bg-accent-purple/10 blur-[80px]" />
-        <div className="absolute bottom-[-20%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-accent-blue/8 blur-[80px]" />
+        <div className="absolute top-[-20%] left-[-10%] w-[60vw] h-[60vw] rounded-full bg-accent-purple/10 blur-[100px]" />
+        <div className="absolute bottom-[-20%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-accent-blue/8 blur-[100px]" />
       </div>
 
       <motion.div
@@ -40,12 +41,20 @@ export default function LoginPage() {
         {/* Logo */}
         <div className="text-center mb-10">
           <motion.div
-            animate={{ scale: [1, 1.06, 1] }}
-            transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
-            className="text-6xl mb-4 inline-block"
-          >🔥</motion.div>
-          <h1 className="text-3xl font-bold streak-text">StreakX</h1>
-          <p className="text-white/50 mt-2 text-sm">Your discipline engine. Don&apos;t break.</p>
+            animate={{ y: [0, -10, 0] }}
+            transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+            className="relative w-20 h-20 mx-auto mb-6 drop-shadow-2xl"
+          >
+            <Image
+              src="/brand/logo.png"
+              alt="StreakX Logo"
+              fill
+              className="object-contain"
+              priority
+            />
+          </motion.div>
+          <h1 className="text-4xl font-black streak-text font-display tracking-tighter">StreakX</h1>
+          <p className="text-white/40 mt-3 text-sm font-medium tracking-wide">THE FITNESS DISCIPLINE ENGINE</p>
         </div>
 
         {/* Card */}
