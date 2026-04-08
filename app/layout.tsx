@@ -1,3 +1,4 @@
+import type { Metadata, Viewport } from "next";
 import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 import ServiceWorkerRegistration from "@/components/ServiceWorkerRegistration";
@@ -6,6 +7,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "sw
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit", display: "swap" });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://streakx.app"),
   title: {
     default: "StreakX — Fitness Discipline Engine",
     template: "%s | StreakX"
