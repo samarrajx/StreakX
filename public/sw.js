@@ -1,5 +1,5 @@
 const CACHE_NAME = "streakx-v1";
-const STATIC_ASSETS = ["/", "/login", "/streak", "/leaderboard", "/profile", "/manifest.json", "/icons/icon-192.png", "/icons/icon-512.png"];
+const STATIC_ASSETS = ["/", "/login", "/streak", "/leaderboard", "/profile", "/icons/icon-192.png", "/icons/icon-512.png"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
@@ -17,8 +17,8 @@ self.addEventListener("fetch", (event) => {
   const { request } = event;
   const url = new URL(request.url);
 
-// Network-first for API calls and Supabase
-  if (url.pathname.startsWith("/api/") || url.hostname.includes("supabase.co") || url.hostname.includes("streakx.app")) {
+// Network-first for API calls and Supabase (strictly external or /api)
+  if (url.pathname.startsWith("/api/") || url.hostname.includes("supabase.co")) {
     event.respondWith(
       fetch(request).catch(async () => {
         const cached = await caches.match(request);
