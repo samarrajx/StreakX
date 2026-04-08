@@ -13,7 +13,6 @@ export const metadata: Metadata = {
     template: "%s | StreakX"
   },
   description: "High-performance fitness tracking for those who don't break. Built with Streaks, Side-Panel navigation, and Discipline.",
-  manifest: "/manifest.json",
   icons: {
     icon: "/brand/logo.png",
     shortcut: "/brand/logo.png",

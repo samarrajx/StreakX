@@ -17,10 +17,13 @@ self.addEventListener("fetch", (event) => {
   const { request } = event;
   const url = new URL(request.url);
 
-  // Network-first for API calls
-  if (url.pathname.startsWith("/api/") || url.hostname.includes("supabase.co")) {
+// Network-first for API calls and Supabase
+  if (url.pathname.startsWith("/api/") || url.hostname.includes("supabase.co") || url.hostname.includes("streakx.app")) {
     event.respondWith(
-      fetch(request).catch(() => caches.match(request))
+      fetch(request).catch(async () => {
+        const cached = await caches.match(request);
+        return cached || new Response("Offline", { status: 503, statusText: "Offline" });
+      })
     );
     return;
   }
