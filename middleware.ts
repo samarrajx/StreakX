@@ -21,7 +21,10 @@ export async function middleware(request: NextRequest) {
     }
   );
 
-  const { data: { user } } = await supabase.auth.getUser();
+  // Using getSession() instead of getUser() in middleware for speed.
+  // getSession() only parses the JWT, avoiding a database round-trip.
+  const { data: { session } } = await supabase.auth.getSession();
+  const user = session?.user;
   const { pathname } = request.nextUrl;
 
   const isPublic = pathname.startsWith("/login") || pathname.startsWith("/api/auth");
