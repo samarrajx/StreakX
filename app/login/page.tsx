@@ -18,10 +18,36 @@ export default function LoginPage() {
     if (!phone.trim() || !password) { setError("Enter phone and password."); return; }
     setLoading(true); setError("");
     const supabase = createClient();
-    const email = `${phone.replace(/\D/g, "")}@streakx.app`;
-    const { error: err } = await supabase.auth.signInWithPassword({ email, password });
-    if (err) { setError(err.message); setLoading(false); return; }
-    router.push("/"); router.refresh();
+
+    // Strategy 1: Digits Only (The new standard)
+    const emailDigitsOnly = `${phone.replace(/\D/g, "")}@streakx.app`;
+    const { data: d1, error: err1 } = await supabase.auth.signInWithPassword({ 
+      email: emailDigitsOnly, 
+      password 
+    });
+
+    if (!err1) {
+      router.push("/"); router.refresh();
+      return;
+    }
+
+    // Strategy 2: Symbols Preserved (The old standard, keeps + and .)
+    const emailSymbolsPreserved = `${phone.replace(/\s+/g, "")}@streakx.app`;
+    if (emailSymbolsPreserved !== emailDigitsOnly) {
+      const { data: d2, error: err2 } = await supabase.auth.signInWithPassword({ 
+        email: emailSymbolsPreserved, 
+        password 
+      });
+      if (!err2) {
+        router.push("/"); router.refresh();
+        return;
+      }
+      setError(err2.message);
+    } else {
+      setError(err1.message);
+    }
+
+    setLoading(false);
   };
 
   return (
